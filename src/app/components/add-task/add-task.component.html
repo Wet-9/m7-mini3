@@ -1,0 +1,89 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add Task</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0/css/bootstrap.min.css">
+
+      <form [formGroup]="form" (ngSubmit)="add_task()">
+        <ion-item>
+          <ion-label position="floating">Title</ion-label>
+          <ion-input type="text" formControlName="title"></ion-input>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+          <div *ngIf="form.get('title')?.hasError('required')">Title is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-input type="text" formControlName="description"></ion-input>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+          <div *ngIf="form.get('description')?.hasError('required')">Description is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-datetime formControlName="date" displayFormat="MMM DD, YYYY" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('date')?.invalid && form.get('date')?.touched">
+          <div *ngIf="form.get('date')?.hasError('required')">Date is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label>Time</ion-label>
+          <ion-datetime formControlName="time" displayFormat="h:mm A" pickerFormat="h:mm A" placeholder="Select Time"></ion-datetime>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('time')?.invalid && form.get('time')?.touched">
+          <div *ngIf="form.get('time')?.hasError('required')">Time is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label>Priority Level</ion-label>
+          <ion-select formControlName="priority_level">
+            <ion-select-option value="High">High</ion-select-option>
+            <ion-select-option value="Medium">Medium</ion-select-option>
+            <ion-select-option value="Low">Low</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('priority_level')?.invalid && form.get('priority_level')?.touched">
+          <div *ngIf="form.get('priority_level')?.hasError('required')">Priority Level is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select formControlName="category">
+            <ion-select-option value="Work">Work</ion-select-option>
+            <ion-select-option value="Personal">Personal</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('category')?.invalid && form.get('category')?.touched">
+          <div *ngIf="form.get('category')?.hasError('required')">Category is required.</div>
+        </ion-note>
+
+        <ion-item>
+          <ion-label>Progress Level</ion-label>
+          <ion-select formControlName="progress_level">
+            <ion-select-option value="Not started">Not Started</ion-select-option>
+            <ion-select-option value="Started">Started</ion-select-option>
+            <ion-select-option value="Completed">Completed</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-note class="ion-text-danger" *ngIf="form.get('progress_level')?.invalid && form.get('progress_level')?.touched">
+          <div *ngIf="form.get('progress_level')?.hasError('required')">Progress Level is required.</div>
+        </ion-note>
+
+        <ion-button expand="full" type="submit" [disabled]="form.invalid">Submit</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
